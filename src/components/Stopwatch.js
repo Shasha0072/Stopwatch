@@ -10,7 +10,7 @@ const Stopwatch = () => {
     let x;
     if (start) {
       x = setInterval(() => {
-        setTime((prev) => prev + 10);
+        setTime((prev) => prev + 1);
       }, 10);
     }
     return () => {
@@ -18,7 +18,7 @@ const Stopwatch = () => {
     };
   }, [time, start]);
 
-  const milliseconds = (time / 10) % 100;
+  const milliseconds = time % 100;
   const seconds = Math.floor((time % 6000) / 100);
   const minutes = Math.floor((time % 360000) / 6000);
   const hours = Math.floor(time / 360000);
