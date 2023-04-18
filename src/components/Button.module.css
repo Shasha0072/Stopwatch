@@ -1,0 +1,19 @@
+.btn {
+  background: #2f58cd;
+  color: #eeeeee;
+  padding: 3px;
+  font-family: "Oxygen", sans-serif;
+  font-size: larger;
+  border-radius: 5px;
+  width: 13%;
+  margin: 5px;
+  border: none;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px #bad7e9;
+}
+
+.btn:hover,
+.btn:focus {
+  background: #eeeeee;
+  color: #3a98b9;
+  outline: none;
+}
