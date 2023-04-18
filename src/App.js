@@ -2,10 +2,7 @@ import "./styles.css";
 import { useState, useEffect } from "react";
 import Button from "./components/Button";
 export default function App() {
-  const [hr, setHr] = useState(0);
-  const [min, setMin] = useState(0);
-  const [sec, setSec] = useState(0);
-  const [milsec, setMilsec] = useState(0);
+  const [time, setTime] = useState(0);
   const [start, setStart] = useState(false);
   const [pause, setPause] = useState(false);
 
@@ -13,13 +10,18 @@ export default function App() {
     let x;
     if (start) {
       x = setInterval(() => {
-        setMilsec((prev) => prev + 1);
-      }, 7);
+        setTime((prev) => prev + 10);
+      }, 10);
     }
     return () => {
       clearInterval(x);
     };
-  }, [milsec, start]);
+  }, [time, start]);
+
+  const milliseconds = (time / 10) % 100;
+  const seconds = Math.floor((time % 6000) / 100);
+  const minutes = Math.floor((time % 360000) / 6000);
+  const hours = Math.floor(time / 360000);
 
   const startHandler = () => {
     setStart((prev) => !prev);
@@ -31,10 +33,7 @@ export default function App() {
   };
 
   const resetHandler = () => {
-    setHr(0);
-    setSec(0);
-    setMin(0);
-    setMilsec(0);
+    setTime(0);
     setStart(false);
     setPause(false);
   };
@@ -66,16 +65,16 @@ export default function App() {
           }}
         >
           <div className="time-Container">
-            <p>{hr} hr</p>
+            <p>{hours}</p>
           </div>
           <div className="time-Container">
-            <p>{min} min</p>
+            <p>{minutes}</p>
           </div>
           <div className="time-Container">
-            <p>{sec} sec</p>
+            <p>{seconds}</p>
           </div>
           <div className="time-Container">
-            <p>{milsec} mS</p>
+            <p>{milliseconds}</p>
           </div>
         </div>
         <div className="btn-container">
